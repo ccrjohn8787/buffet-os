@@ -1,0 +1,28 @@
+# OS
+.DS_Store
+
+# Env
+.env
+.env.*
+!.env.example
+apps/web/.env.local
+apps/web/.env
+
+# Node / Next.js
+node_modules/
+apps/web/node_modules/
+apps/web/.next/
+apps/web/web-dev.log
+
+# Python
+__pycache__/
+*.pyc
+apps/ingest/.venv/
+
+# Data (generated artifacts)
+data/
+!data/.gitignore
+
+# Logs
+*.log
+

@@ -1,0 +1,17 @@
+{
+  "queries": [
+    {
+      "q": "repurchases",
+      "year": 2019
+    },
+    {
+      "q": "intrinsic value",
+      "year": 2020
+    },
+    {
+      "q": "float",
+      "year": 2021
+    }
+  ]
+}
+

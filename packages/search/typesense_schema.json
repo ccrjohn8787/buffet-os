@@ -1,0 +1,15 @@
+{
+  "name": "sections",
+  "fields": [
+    { "name": "id", "type": "string" },
+    { "name": "document_id", "type": "int32", "facet": true },
+    { "name": "title", "type": "string" },
+    { "name": "year", "type": "int32", "facet": true },
+    { "name": "source", "type": "string", "facet": true },
+    { "name": "anchor", "type": "string" },
+    { "name": "page_no", "type": "int32", "optional": true },
+    { "name": "text", "type": "string" }
+  ],
+  "default_sorting_field": "year"
+}
+
