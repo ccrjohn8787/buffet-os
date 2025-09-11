@@ -9,6 +9,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
   const q = searchParams.get('q') || ''
   const year = searchParams.get('year')
+  const topic = searchParams.get('topic') // Add topic filter
 
   const host = process.env.NEXT_PUBLIC_TYPESENSE_HOST || 'localhost'
   const port = process.env.NEXT_PUBLIC_TYPESENSE_PORT || '8108'
@@ -41,7 +42,7 @@ export async function GET(req: NextRequest) {
     // Fallback: search local normalized files with optimized performance and caching
     try {
       // Check cache first
-      const cacheKey = `search:${q}:${year || 'all'}`
+      const cacheKey = `search:${q}:${year || 'all'}:${topic || 'all'}`
       const cached = cache.get(cacheKey)
       if (cached && Date.now() - cached.timestamp < CACHE_TTL) {
         return new Response(JSON.stringify({ hits: cached.data }), { 
@@ -151,9 +152,19 @@ export async function GET(req: NextRequest) {
           }
           
           if (matches) {
-            // Remove search text before adding to results
-            const { _searchText, ...cleanDoc } = doc
-            results.push({ ...cleanDoc, _score: score })
+            // Apply topic filter if specified
+            let passesTopicFilter = true
+            if (topic) {
+              passesTopicFilter = doc.topics && doc.topics.some((t: any) => 
+                t.topic_id === topic || t.topic_name.toLowerCase().includes(topic.toLowerCase())
+              )
+            }
+            
+            if (passesTopicFilter) {
+              // Remove search text before adding to results
+              const { _searchText, ...cleanDoc } = doc
+              results.push({ ...cleanDoc, _score: score })
+            }
           }
           
           // Early exit if we have enough results and no specific year filter

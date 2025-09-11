@@ -1,6 +1,7 @@
 "use client";
 import Results from "./results";
 import YearTimeline from "./year-timeline";
+import TopicSelector from "./topic-selector";
 import ErrorBoundary from "../components/error-boundary";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -9,15 +10,18 @@ export default function SearchPage() {
   const router = useRouter();
   const [q, setQ] = useState("");
   const [year, setYear] = useState("");
+  const [topic, setTopic] = useState("");
   
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
     setQ(sp.get('q') || "");
     setYear(sp.get('year') || "");
+    setTopic(sp.get('topic') || "");
     const onPop = () => {
       const sp2 = new URLSearchParams(window.location.search);
       setQ(sp2.get('q') || "");
       setYear(sp2.get('year') || "");
+      setTopic(sp2.get('topic') || "");
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
@@ -64,6 +68,7 @@ export default function SearchPage() {
               const sp = new URLSearchParams(); 
               if (q) sp.set('q', q); 
               if (year) sp.set('year', year); 
+              if (topic) sp.set('topic', topic); 
               router.push(`/search?${sp.toString()}`); 
             }} 
             style={{ 
@@ -96,6 +101,10 @@ export default function SearchPage() {
                 e.target.style.backgroundColor = '#f8f9fa'
                 e.target.style.boxShadow = 'none'
               }}
+            />
+            <TopicSelector
+              selectedTopic={topic}
+              onTopicChange={(newTopic) => setTopic(newTopic)}
             />
             <input 
               value={year} 
@@ -156,7 +165,7 @@ export default function SearchPage() {
             color: '#70757a',
             fontSize: '14px'
           }}>
-            {year ? `Results for "${q}" in ${year}` : `Results for "${q}"`}
+            {`Results for "${q}"${year ? ` in ${year}` : ''}${topic ? ` about ${topic}` : ''}`}
           </div>
         )}
 
@@ -179,6 +188,7 @@ export default function SearchPage() {
                 const sp = new URLSearchParams();
                 if (q) sp.set('q', q);
                 if (newYear) sp.set('year', newYear);
+                if (topic) sp.set('topic', topic);
                 router.push(`/search?${sp.toString()}`);
               }}
             />
@@ -197,7 +207,7 @@ export default function SearchPage() {
             <p>Unable to load search results. Please try a different query.</p>
           </div>
         }>
-          <Results q={q} year={year} />
+          <Results q={q} year={year} topic={topic} />
         </ErrorBoundary>
       </main>
     </div>

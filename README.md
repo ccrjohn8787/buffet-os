@@ -15,7 +15,7 @@ Quickstart (MVP, no external infra)
    - `cd apps/ingest && python -m venv .venv && source .venv/bin/activate`
    - `pip install -r requirements.txt`
    - `python -m ingest.main --seed ingest/seed/letters.seed.yaml --out ../../data/normalized`
-     - Seed includes 2018–2023 (PDF). Already ingested in this repo for 2019–2021.
+     - Seed includes 2004–2023 (PDF). Already ingested in this repo for 2004–2023 (10,433 sections total, 98.9% topic-tagged).
 2) Run the web app (Next.js)
    - `cd ../web && cp .env.example .env.local`
    - `npm i && npm run dev`

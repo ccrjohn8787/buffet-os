@@ -11,7 +11,7 @@ type Hit = {
   text: string;
 };
 
-export default function Results({ q, year }: { q: string; year?: string }) {
+export default function Results({ q, year, topic }: { q: string; year?: string; topic?: string }) {
   const [hits, setHits] = useState<Hit[]>([]);
   const [loading, setLoading] = useState(false);
   const [sel, setSel] = useState<number>(0);
@@ -29,6 +29,7 @@ export default function Results({ q, year }: { q: string; year?: string }) {
       try {
         const params = new URLSearchParams({ q });
         if (year) params.set("year", year);
+        if (topic) params.set("topic", topic);
         const r = await fetch(`/api/search?${params.toString()}`, { signal: controller.signal });
         
         if (!r.ok) {
@@ -49,7 +50,7 @@ export default function Results({ q, year }: { q: string; year?: string }) {
     }
     run();
     return () => controller.abort();
-  }, [q, year]);
+  }, [q, year, topic]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

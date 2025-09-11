@@ -26,7 +26,9 @@ export default function QuoteCard({
   const [permalink, setPermalink] = useState('');
   
   useEffect(() => {
-    setPermalink(`${window.location.origin}/letters/${year}#${encodeURIComponent(anchor)}`);
+    if (typeof window !== 'undefined') {
+      setPermalink(`${window.location.origin}/letters/${year}#${encodeURIComponent(anchor)}`);
+    }
   }, [year, anchor]);
   
   const copyToClipboard = async (format: 'citation' | 'text' | 'link') => {
