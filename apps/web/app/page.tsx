@@ -21,10 +21,46 @@ interface DailyWisdom {
   date: string;
 }
 
+interface YearData {
+  year: number
+  era: 'classic' | 'modern'
+  hasLetter: boolean
+  hasSummary: boolean
+  highlight?: string
+  description?: string
+}
+
+interface AvailableYearsData {
+  years: YearData[]
+  eras: {
+    classic: {
+      name: string
+      description: string
+      years: YearData[]
+      count: number
+    }
+    modern: {
+      name: string
+      description: string
+      years: YearData[]
+      count: number
+    }
+  }
+  stats: {
+    total: number
+    withSummaries: number
+    withLetters: number
+    classicCount: number
+    modernCount: number
+  }
+}
+
 export default function HomePage() {
   const [q, setQ] = useState("");
   const [dailyWisdom, setDailyWisdom] = useState<DailyWisdom | null>(null);
   const [wisdomLoading, setWisdomLoading] = useState(true);
+  const [availableYears, setAvailableYears] = useState<AvailableYearsData | null>(null);
+  const [yearsLoading, setYearsLoading] = useState(true);
   const router = useRouter();
   
   useEffect(() => {
@@ -54,6 +90,23 @@ export default function HomePage() {
       }
     }
     loadDailyWisdom();
+  }, [])
+  
+  useEffect(() => {
+    async function loadAvailableYears() {
+      try {
+        const response = await fetch('/api/letters/available');
+        if (response.ok) {
+          const years = await response.json();
+          setAvailableYears(years);
+        }
+      } catch (error) {
+        console.error('Error loading available years:', error);
+      } finally {
+        setYearsLoading(false);
+      }
+    }
+    loadAvailableYears();
   }, [])
 
   return (
@@ -201,7 +254,7 @@ export default function HomePage() {
           marginBottom: '32px',
           lineHeight: '1.5'
         }}>
-          Search 20 years (2004-2023) of Warren Buffett's wisdom with exact quotes and citations
+          Search 37 years (1977-2023) of Warren Buffett's wisdom with exact quotes and citations
         </p>
 
         <form
@@ -378,6 +431,116 @@ export default function HomePage() {
             </a>
             <span style={{ color: '#dadce0' }}>•</span>
             <a 
+              href="/compare?year1=2020&year2=2021" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Compare Letters
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/evolution?topic=insurance" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Evolution Tracker
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/portfolio" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Portfolio Tracker
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/principles" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Investment Principles
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/learn" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Learning Center
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/cases" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Case Studies
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/progress" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Progress
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/advisor" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              AI Advisor
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/market" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Market Analysis
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
+              href="/insights" 
+              style={{ 
+                color: '#3b82f6', 
+                textDecoration: 'none',
+                fontWeight: '500'
+              }}
+            >
+              Personal Insights
+            </a>
+            <span style={{ color: '#dadce0' }}>•</span>
+            <a 
               href="/letters/2021" 
               style={{ 
                 color: '#3b82f6', 
@@ -402,6 +565,331 @@ export default function HomePage() {
         </div>
         </div>
       </div>
+      
+      {/* Year Navigation Section */}
+      {!yearsLoading && availableYears && (
+        <div style={{
+          backgroundColor: 'white',
+          borderTop: '1px solid #f3f4f6',
+          padding: 'clamp(24px, 6vw, 48px) clamp(16px, 4vw, 20px)'
+        }}>
+          <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto'
+          }}>
+            <div style={{
+              textAlign: 'center',
+              marginBottom: 'clamp(24px, 6vw, 40px)'
+            }}>
+              <h2 style={{
+                fontSize: 'clamp(20px, 5vw, 28px)',
+                fontWeight: '600',
+                color: '#1f2937',
+                marginBottom: '12px'
+              }}>
+                📚 Browse Letters by Year
+              </h2>
+              <p style={{
+                fontSize: '16px',
+                color: '#6b7280',
+                marginBottom: '8px'
+              }}>
+                {availableYears.stats.total} years of Warren Buffett's wisdom • {availableYears.stats.withSummaries} AI summaries available
+              </p>
+            </div>
+
+            {/* Classic Era */}
+            <div style={{ marginBottom: 'clamp(32px, 8vw, 48px)' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                marginBottom: '24px'
+              }}>
+                <h3 style={{
+                  fontSize: '22px',
+                  fontWeight: '600',
+                  color: '#92400e',
+                  margin: 0
+                }}>
+                  {availableYears.eras.classic.name}
+                </h3>
+                <span style={{
+                  padding: '4px 12px',
+                  fontSize: '12px',
+                  backgroundColor: '#fef3c7',
+                  color: '#92400e',
+                  borderRadius: '12px',
+                  fontWeight: '500'
+                }}>
+                  {availableYears.eras.classic.count} years
+                </span>
+              </div>
+              <p style={{
+                fontSize: '14px',
+                color: '#78716c',
+                marginBottom: '24px'
+              }}>
+                {availableYears.eras.classic.description}
+              </p>
+              
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(min(160px, 45vw), 1fr))',
+                gap: 'clamp(12px, 3vw, 16px)'
+              }}>
+                {availableYears.eras.classic.years.map((yearData) => (
+                  <div
+                    key={yearData.year}
+                    style={{
+                      backgroundColor: '#fffbeb',
+                      border: '1px solid #fed7aa',
+                      borderRadius: '12px',
+                      padding: 'clamp(12px, 4vw, 20px)',
+                      textAlign: 'center',
+                      transition: 'all 0.2s',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                  >
+                    <div style={{
+                      fontSize: 'clamp(20px, 5vw, 24px)',
+                      fontWeight: '700',
+                      color: '#92400e',
+                      marginBottom: '8px'
+                    }}>
+                      {yearData.year}
+                    </div>
+                    
+                    {yearData.highlight && (
+                      <div style={{
+                        fontSize: '11px',
+                        color: '#d97706',
+                        fontWeight: '600',
+                        marginBottom: '12px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px'
+                      }}>
+                        {yearData.highlight}
+                      </div>
+                    )}
+
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '8px'
+                    }}>
+                      {yearData.hasLetter && (
+                        <a
+                          href={`/letters/${yearData.year}`}
+                          style={{
+                            display: 'block',
+                            padding: '8px 12px',
+                            fontSize: '13px',
+                            backgroundColor: '#f59e0b',
+                            color: 'white',
+                            borderRadius: '6px',
+                            textDecoration: 'none',
+                            fontWeight: '500',
+                            transition: 'background-color 0.2s'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#d97706'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#f59e0b'
+                          }}
+                        >
+                          📖 Full Letter
+                        </a>
+                      )}
+                      
+                      {yearData.hasSummary && (
+                        <a
+                          href={`/letters/${yearData.year}/summary`}
+                          style={{
+                            display: 'block',
+                            padding: '8px 12px',
+                            fontSize: '13px',
+                            backgroundColor: '#fbbf24',
+                            color: '#92400e',
+                            borderRadius: '6px',
+                            textDecoration: 'none',
+                            fontWeight: '500',
+                            transition: 'all 0.2s'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#f59e0b'
+                            e.currentTarget.style.color = 'white'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#fbbf24'
+                            e.currentTarget.style.color = '#92400e'
+                          }}
+                        >
+                          ✨ AI Summary
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Modern Era */}
+            <div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                marginBottom: '24px'
+              }}>
+                <h3 style={{
+                  fontSize: '22px',
+                  fontWeight: '600',
+                  color: '#1e40af',
+                  margin: 0
+                }}>
+                  {availableYears.eras.modern.name}
+                </h3>
+                <span style={{
+                  padding: '4px 12px',
+                  fontSize: '12px',
+                  backgroundColor: '#dbeafe',
+                  color: '#1e40af',
+                  borderRadius: '12px',
+                  fontWeight: '500'
+                }}>
+                  {availableYears.eras.modern.count} years
+                </span>
+              </div>
+              <p style={{
+                fontSize: '14px',
+                color: '#6b7280',
+                marginBottom: '24px'
+              }}>
+                {availableYears.eras.modern.description}
+              </p>
+              
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(min(160px, 45vw), 1fr))',
+                gap: 'clamp(12px, 3vw, 16px)'
+              }}>
+                {availableYears.eras.modern.years.map((yearData) => (
+                  <div
+                    key={yearData.year}
+                    style={{
+                      backgroundColor: '#f0f9ff',
+                      border: '1px solid #bae6fd',
+                      borderRadius: '12px',
+                      padding: 'clamp(12px, 4vw, 20px)',
+                      textAlign: 'center',
+                      transition: 'all 0.2s',
+                      cursor: 'pointer'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                      e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)'
+                      e.currentTarget.style.boxShadow = 'none'
+                    }}
+                  >
+                    <div style={{
+                      fontSize: 'clamp(20px, 5vw, 24px)',
+                      fontWeight: '700',
+                      color: '#1e40af',
+                      marginBottom: '8px'
+                    }}>
+                      {yearData.year}
+                    </div>
+                    
+                    {yearData.highlight && (
+                      <div style={{
+                        fontSize: '11px',
+                        color: '#2563eb',
+                        fontWeight: '600',
+                        marginBottom: '12px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px'
+                      }}>
+                        {yearData.highlight}
+                      </div>
+                    )}
+
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '8px'
+                    }}>
+                      {yearData.hasLetter && (
+                        <a
+                          href={`/letters/${yearData.year}`}
+                          style={{
+                            display: 'block',
+                            padding: '8px 12px',
+                            fontSize: '13px',
+                            backgroundColor: '#3b82f6',
+                            color: 'white',
+                            borderRadius: '6px',
+                            textDecoration: 'none',
+                            fontWeight: '500',
+                            transition: 'background-color 0.2s'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#2563eb'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#3b82f6'
+                          }}
+                        >
+                          📖 Full Letter
+                        </a>
+                      )}
+                      
+                      {yearData.hasSummary && (
+                        <a
+                          href={`/letters/${yearData.year}/summary`}
+                          style={{
+                            display: 'block',
+                            padding: '8px 12px',
+                            fontSize: '13px',
+                            backgroundColor: '#60a5fa',
+                            color: '#1e40af',
+                            borderRadius: '6px',
+                            textDecoration: 'none',
+                            fontWeight: '500',
+                            transition: 'all 0.2s'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = '#3b82f6'
+                            e.currentTarget.style.color = 'white'
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = '#60a5fa'
+                            e.currentTarget.style.color = '#1e40af'
+                          }}
+                        >
+                          ✨ AI Summary
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
