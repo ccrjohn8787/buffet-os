@@ -1,4 +1,25 @@
 letters:
+  - year: 1977
+    title: "Berkshire Hathaway Shareholder Letter 1977"
+    url: "https://www.berkshirehathaway.com/letters/1977.html"
+  - year: 1982
+    title: "Berkshire Hathaway Shareholder Letter 1982" 
+    url: "https://www.berkshirehathaway.com/letters/1982.html"
+  - year: 1987
+    title: "Berkshire Hathaway Shareholder Letter 1987"
+    url: "https://www.berkshirehathaway.com/letters/1987.html"
+  - year: 1988
+    title: "Berkshire Hathaway Shareholder Letter 1988"
+    url: "https://www.berkshirehathaway.com/letters/1988.html"
+  - year: 1989
+    title: "Berkshire Hathaway Shareholder Letter 1989"
+    url: "https://www.berkshirehathaway.com/letters/1989.html"
+  - year: 1992
+    title: "Berkshire Hathaway Shareholder Letter 1992"
+    url: "https://www.berkshirehathaway.com/letters/1992.html"
+  - year: 1993
+    title: "Berkshire Hathaway Shareholder Letter 1993"
+    url: "https://www.berkshirehathaway.com/letters/1993.html"
   - year: 1994
     title: "Berkshire Hathaway Shareholder Letter 1994"
     url: "https://www.berkshirehathaway.com/letters/1994.html"
@@ -31,34 +52,34 @@ letters:
     url: "https://www.berkshirehathaway.com/letters/2003.html"
   - year: 2004
     title: "Berkshire Hathaway Shareholder Letter 2004"
-    url: "https://www.berkshirehathaway.com/letters/2004.html"
+    url: "https://www.berkshirehathaway.com/letters/2004ltr.pdf"
   - year: 2005
     title: "Berkshire Hathaway Shareholder Letter 2005"
-    url: "https://www.berkshirehathaway.com/letters/2005.html"
+    url: "https://www.berkshirehathaway.com/letters/2005ltr.pdf"
   - year: 2006
     title: "Berkshire Hathaway Shareholder Letter 2006"
-    url: "https://www.berkshirehathaway.com/letters/2006.html"
+    url: "https://www.berkshirehathaway.com/letters/2006ltr.pdf"
   - year: 2007
     title: "Berkshire Hathaway Shareholder Letter 2007"
-    url: "https://www.berkshirehathaway.com/letters/2007.html"
+    url: "https://www.berkshirehathaway.com/letters/2007ltr.pdf"
   - year: 2008
     title: "Berkshire Hathaway Shareholder Letter 2008"
-    url: "https://www.berkshirehathaway.com/letters/2008.html"
+    url: "https://www.berkshirehathaway.com/letters/2008ltr.pdf"
   - year: 2009
     title: "Berkshire Hathaway Shareholder Letter 2009"
-    url: "https://www.berkshirehathaway.com/letters/2009.html"
+    url: "https://www.berkshirehathaway.com/letters/2009ltr.pdf"
   - year: 2010
     title: "Berkshire Hathaway Shareholder Letter 2010"
-    url: "https://www.berkshirehathaway.com/letters/2010.html"
+    url: "https://www.berkshirehathaway.com/letters/2010ltr.pdf"
   - year: 2011
     title: "Berkshire Hathaway Shareholder Letter 2011"
-    url: "https://www.berkshirehathaway.com/letters/2011.html"
+    url: "https://www.berkshirehathaway.com/letters/2011ltr.pdf"
   - year: 2012
     title: "Berkshire Hathaway Shareholder Letter 2012"
-    url: "https://www.berkshirehathaway.com/letters/2012.html"
+    url: "https://www.berkshirehathaway.com/letters/2012ltr.pdf"
   - year: 2013
     title: "Berkshire Hathaway Shareholder Letter 2013"
-    url: "https://www.berkshirehathaway.com/letters/2013.html"
+    url: "https://www.berkshirehathaway.com/letters/2013ltr.pdf"
   - year: 2014
     title: "Berkshire Hathaway Shareholder Letter 2014"
     url: "https://www.berkshirehathaway.com/letters/2014ltr.pdf"
