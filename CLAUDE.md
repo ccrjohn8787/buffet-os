@@ -8,11 +8,11 @@ Buffett OS is a production-ready zero-hallucination, provenance-first website fo
 
 ## Current MVP Status ✅
 
-### Completed Features (4 Sprints)
-- **Sprint 1**: Search-First Foundation with Google-style interface
-- **Sprint 2**: Quote Cards & Social Sharing capabilities  
-- **Sprint 3**: Enhanced Reader Experience with highlights and navigation
-- **Sprint 4**: Data Quality & Performance optimization
+### Completed Features (4 Phases)
+- **Phase 1**: Search-First Foundation with Google-style interface, Quote Cards & Social Sharing, Enhanced Reader Experience, Data Quality & Performance
+- **Phase 2**: Investment Intelligence - Portfolio Tracker, Investment Principles, Decision Framework
+- **Phase 3**: Educational Intelligence - Learning Center, Case Studies, Progress Dashboard
+- **Phase 4**: Advanced Intelligence - AI-Powered Investment Advisor, Real-time Market Analysis, Personalized Buffett Insights
 
 ### Available Data
 - **20 years** of letters: 2004-2023 (complete modern era)
@@ -20,14 +20,28 @@ Buffett OS is a production-ready zero-hallucination, provenance-first website fo
 - **All normalized letter sections** in JSONL format
 - **AI-generated summaries** for all years with proper formatting
 
-## Roadmap & Sprints
-- docs/ROADMAP.md — milestones and non‑functional goals
-- docs/sprints/SPRINT_01_MVP.md — Letters MVP (completed)
-- docs/sprints/SPRINT_02_TOPICS.md — Topics & hubs (completed)
-- docs/sprints/SPRINT_03_MEETINGS_QA.md — Meetings + quotes‑only QA
-- docs/sprints/SPRINT_04_COMPARE_EVAL.md — Compare + eval harness
-- docs/FEATURE_SPEC_SUMMARIES_TOPICS.md — Next: AI summaries & topic evolution
-- docs/PRODUCT_EVOLUTION_PLAN.md — Long-term product evolution strategy with 4-phase roadmap
+## 4-Phase Product Evolution (Complete)
+
+### Phase 1: Foundation (✅ Complete)
+- Search-First Foundation with Google-style interface
+- Quote Cards & Social Sharing capabilities
+- Enhanced Reader Experience with highlights and navigation
+- Data Quality & Performance optimization
+
+### Phase 2: Investment Intelligence (✅ Complete)
+- Portfolio Tracker with holdings management
+- Investment Principles system (8 core principles)
+- Decision Framework with step-by-step guidance
+
+### Phase 3: Educational Intelligence (✅ Complete)
+- Learning Center with 5 comprehensive modules
+- Interactive Case Studies (Coca-Cola, Apple, IBM)
+- Progress Dashboard with achievements system
+
+### Phase 4: Advanced Intelligence (✅ Complete)
+- AI-Powered Investment Advisor with company analysis
+- Real-time Market Analysis through Buffett's lens
+- Personalized Buffett Insights based on user profiles
 
 ## Development Commands
 
@@ -123,6 +137,26 @@ Access the development server:
 - **Letter Reader**: http://localhost:3000/letters/2020
 - **Quote Sharing**: http://localhost:3000/quote/2020/¶123
 
+### Phase 2-4 Feature Testing
+- **Portfolio Tracker**: http://localhost:3000/portfolio
+- **Investment Principles**: http://localhost:3000/principles
+- **Decision Framework**: http://localhost:3000/decisions
+- **Learning Center**: http://localhost:3000/learn
+- **Case Studies**: http://localhost:3000/case-studies
+- **Progress Dashboard**: http://localhost:3000/progress
+- **Market Analysis**: http://localhost:3000/market
+- **Personal Insights**: http://localhost:3000/insights
+
+### API Endpoints Testing
+- **Portfolio API**: http://localhost:3000/api/portfolio
+- **Principles API**: http://localhost:3000/api/principles
+- **Learning API**: http://localhost:3000/api/learning
+- **Case Studies API**: http://localhost:3000/api/case-studies
+- **Progress API**: http://localhost:3000/api/progress
+- **AI Advisor API**: http://localhost:3000/api/ai-advisor?symbol=AAPL
+- **Market Analysis API**: http://localhost:3000/api/market-analysis
+- **Insights API**: http://localhost:3000/api/insights
+
 ### Performance Metrics (Current)
 - **Search API**: 8-68ms response times (with caching)
 - **Letter API**: 6-99ms response times (with caching)  
@@ -142,6 +176,9 @@ Access the development server:
 2. **Deep Reading**: Letter Reader → Highlights → Export → Share
 3. **Quote Sharing**: Hover actions → Copy/Share → Social media ready
 4. **Year Navigation**: Era-based browsing with previous/next controls
+5. **Investment Analysis**: Portfolio → Holdings Analysis → AI Advisor Recommendations
+6. **Learning Journey**: Learning Center → Modules → Case Studies → Progress Tracking
+7. **Market Intelligence**: Market Analysis → Sector Insights → Personal Recommendations
 
 # important-instruction-reminders
 Do what has been asked; nothing more, nothing less.

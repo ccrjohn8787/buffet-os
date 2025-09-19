@@ -22,16 +22,30 @@ Quickstart (MVP, no external infra)
    - `npm i && npm run dev`
    - Open http://localhost:3000
 
-What's included (Current)
+What's included (Current) - All 4 Phases Complete
+
+### Phase 1: Foundation Features ✅
 - **37 Years of Data**: 1977, 1982, 1987–2023 letters with comprehensive historical coverage
 - **Search UI** (`/search`): JSONL fallback search with topic filtering; Typesense used automatically if running  
 - **Topic Intelligence** (`/topics`): 20 topics with hub pages, discovery features, daily wisdom
 - **Reader** (`/letters/[year]`): anchored paragraphs `¶N`, deep‑links, copy‑with‑citation (checksum‑verified), local highlights + .md export
-- **Investment Intelligence**: Portfolio tracker, investment principles, and decision framework
-- **Educational Intelligence**: Learning center with 5 modules, interactive case studies, progress tracking
-- **Advanced AI Features**: AI-powered investment advisor, real-time market analysis, personalized Buffett insights
 - **Discovery Features**: Daily wisdom algorithm, surprise quotes, topic-based exploration
 - **Ingestion**: PDFs (and HTML) → normalized sections with paragraph anchors, per‑section checksum, doc sha256, and provenance manifest
+
+### Phase 2: Investment Intelligence ✅
+- **Portfolio Tracker** (`/portfolio`): Holdings management with entry/exit analysis, performance tracking
+- **Investment Principles** (`/principles`): 8 core Buffett principles with interactive examples and quotes
+- **Decision Framework** (`/decisions`): Step-by-step investment decision trees with Buffett's methodology
+
+### Phase 3: Educational Intelligence ✅
+- **Learning Center** (`/learn`): 5 comprehensive modules (Fundamentals, Valuation, Psychology, Management, Risk)
+- **Interactive Case Studies** (`/case-studies`): Deep-dive analysis of Coca-Cola, Apple, and IBM investments
+- **Progress Dashboard** (`/progress`): Achievement system with learning milestones and competency tracking
+
+### Phase 4: Advanced Intelligence ✅
+- **AI-Powered Investment Advisor** (`/api/ai-advisor`): Company analysis using Buffett's 5-dimension framework
+- **Real-time Market Analysis** (`/market`): Market insights through Buffett's lens with sector analysis
+- **Personalized Buffett Insights** (`/insights`): Customized guidance based on user investment profile and experience
 
 Optional: Typesense/Postgres/MinIO (production‑like)
 - `infra/docker-compose.yml` (Typesense, Postgres, MinIO)
